@@ -1,0 +1,228 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025/nixos.org) (preloaded format=xelatex 1980.1.1)  25 NOV 2026 02:54
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**02_prelim.tex
+(./02_prelim.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+./02_prelim.tex:1: Undefined control sequence.
+l.1 \section
+            {準備}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./02_prelim.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \section{準
+              備}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 準 ("6E96) in font nullfont!
+Missing character: There is no 備 ("5099) in font nullfont!
+Missing character: There is no 本 ("672C) in font nullfont!
+Missing character: There is no 節 ("7BC0) in font nullfont!
+Missing character: There is no で ("3067) in font nullfont!
+Missing character: There is no は ("306F) in font nullfont!
+Missing character: There is no ， ("FF0C) in font nullfont!
+Missing character: There is no 本 ("672C) in font nullfont!
+Missing character: There is no 研 ("7814) in font nullfont!
+Missing character: There is no 究 ("7A76) in font nullfont!
+Missing character: There is no で ("3067) in font nullfont!
+Missing character: There is no 扱 ("6271) in font nullfont!
+Missing character: There is no う ("3046) in font nullfont!
+Missing character: There is no 言 ("8A00) in font nullfont!
+Missing character: There is no 語 ("8A9E) in font nullfont!
+Missing character: There is no の ("306E) in font nullfont!
+Missing character: There is no 構 ("69CB) in font nullfont!
+Missing character: There is no 文 ("6587) in font nullfont!
+Missing character: There is no お ("304A) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no び ("3073) in font nullfont!
+Missing character: There is no 宣 ("5BA3) in font nullfont!
+Missing character: There is no 言 ("8A00) in font nullfont!
+Missing character: There is no 的 ("7684) in font nullfont!
+Missing character: There is no な ("306A) in font nullfont!
+Missing character: There is no 型 ("578B) in font nullfont!
+Missing character: There is no 付 ("4ED8) in font nullfont!
+Missing character: There is no け ("3051) in font nullfont!
+Missing character: There is no 規 ("898F) in font nullfont!
+Missing character: There is no 則 ("5247) in font nullfont!
+Missing character: There is no を ("3092) in font nullfont!
+Missing character: There is no 定 ("5B9A) in font nullfont!
+Missing character: There is no 義 ("7FA9) in font nullfont!
+Missing character: There is no す ("3059) in font nullfont!
+Missing character: There is no る ("308B) in font nullfont!
+Missing character: There is no ． ("FF0E) in font nullfont!
+./02_prelim.tex:3: Undefined control sequence.
+l.3 \subsection
+               {構文}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 構 ("69CB) in font nullfont!
+Missing character: There is no 文 ("6587) in font nullfont!
+Missing character: There is no 項 ("9805) in font nullfont!
+Missing character: There is no お ("304A) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no び ("3073) in font nullfont!
+Missing character: There is no 型 ("578B) in font nullfont!
+Missing character: There is no の ("306E) in font nullfont!
+Missing character: There is no 構 ("69CB) in font nullfont!
+Missing character: There is no 文 ("6587) in font nullfont!
+Missing character: There is no は ("306F) in font nullfont!
+Missing character: There is no 次 ("6B21) in font nullfont!
+Missing character: There is no の ("306E) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no う ("3046) in font nullfont!
+Missing character: There is no に ("306B) in font nullfont!
+Missing character: There is no 定 ("5B9A) in font nullfont!
+Missing character: There is no 義 ("7FA9) in font nullfont!
+Missing character: There is no す ("3059) in font nullfont!
+Missing character: There is no る ("308B) in font nullfont!
+Missing character: There is no ． ("FF0E) in font nullfont!
+Missing character: There is no 項 ("9805) in font nullfont!
+Missing character: There is no 構 ("69CB) in font nullfont!
+Missing character: There is no 文 ("6587) in font nullfont!
+Missing character: There is no は ("306F) in font nullfont!
+Missing character: There is no P ("50) in font nullfont!
+Missing character: There is no C ("43) in font nullfont!
+Missing character: There is no F ("46) in font nullfont!
+Missing character: There is no を ("3092) in font nullfont!
+Missing character: There is no レ ("30EC) in font nullfont!
+Missing character: There is no コ ("30B3) in font nullfont!
+Missing character: There is no ー ("30FC) in font nullfont!
+Missing character: There is no ド ("30C9) in font nullfont!
+Missing character: There is no 及 ("53CA) in font nullfont!
+Missing character: There is no び ("3073) in font nullfont!
+Missing character: There is no ヴ ("30F4) in font nullfont!
+Missing character: There is no ァ ("30A1) in font nullfont!
+Missing character: There is no リ ("30EA) in font nullfont!
+Missing character: There is no ア ("30A2) in font nullfont!
+Missing character: There is no ン ("30F3) in font nullfont!
+Missing character: There is no ト ("30C8) in font nullfont!
+Missing character: There is no に ("306B) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no り ("308A) in font nullfont!
+Missing character: There is no 拡 ("62E1) in font nullfont!
+Missing character: There is no 張 ("5F35) in font nullfont!
+Missing character: There is no し ("3057) in font nullfont!
+Missing character: There is no た ("305F) in font nullfont!
+Missing character: There is no 体 ("4F53) in font nullfont!
+Missing character: There is no 系 ("7CFB) in font nullfont!
+Missing character: There is no で ("3067) in font nullfont!
+Missing character: There is no あ ("3042) in font nullfont!
+Missing character: There is no る ("308B) in font nullfont!
+Missing character: There is no P ("50) in font nullfont!
+Missing character: There is no C ("43) in font nullfont!
+Missing character: There is no F ("46) in font nullfont!
+Missing character: There is no + ("2B) in font nullfont!
+Missing character: There is no [ ("5B) in font nullfont!
+\citation{gunter92}
+./02_prelim.tex:4: Undefined control sequence.
+<write> ...: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .^^J
+l.4 ...コード及びヴァリアントにより拡張した体系である PCF+\cite{gunter92}
+                                                  に基づく．
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `gunter92' on page  undefined on input line 4.
+
+Missing character: There is no ] ("5D) in font nullfont!
+Missing character: There is no に ("306B) in font nullfont!
+Missing character: There is no 基 ("57FA) in font nullfont!
+Missing character: There is no づ ("3065) in font nullfont!
+Missing character: There is no く ("304F) in font nullfont!
+Missing character: There is no ． ("FF0E) in font nullfont!
+
+./02_prelim.tex:6: LaTeX Error: Environment definition undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 \begin{definition}
+                      [項の構文]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ ("5B) in font nullfont!
+Missing character: There is no 項 ("9805) in font nullfont!
+Missing character: There is no の ("306E) in font nullfont!
+Missing character: There is no 構 ("69CB) in font nullfont!
+Missing character: There is no 文 ("6587) in font nullfont!
+Missing character: There is no ] ("5D) in font nullfont!
+Missing character: There is no 項 ("9805) in font nullfont!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 7.
+Missing character: There is no お ("304A) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no び ("3073) in font nullfont!
+Missing character: There is no 型 ("578B) in font nullfont!
+Missing character: There is no を ("3092) in font nullfont!
+Missing character: There is no ， ("FF0C) in font nullfont!
+Missing character: There is no 以 ("4EE5) in font nullfont!
+Missing character: There is no 下 ("4E0B) in font nullfont!
+Missing character: There is no の ("306E) in font nullfont!
+Missing character: There is no よ ("3088) in font nullfont!
+Missing character: There is no う ("3046) in font nullfont!
+Missing character: There is no に ("306B) in font nullfont!
+Missing character: There is no 帰 ("5E30) in font nullfont!
+Missing character: There is no 納 ("7D0D) in font nullfont!
+Missing character: There is no 的 ("7684) in font nullfont!
+Missing character: There is no に ("306B) in font nullfont!
+Missing character: There is no 定 ("5B9A) in font nullfont!
+Missing character: There is no 義 ("7FA9) in font nullfont!
+Missing character: There is no す ("3059) in font nullfont!
+Missing character: There is no る ("308B) in font nullfont!
+Missing character: There is no ． ("FF0E) in font nullfont!
+
+./02_prelim.tex:8: LaTeX Error: \begin{document} ended by \end{definition}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \end{definition}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+! Emergency stop.
+<*> 02_prelim.tex
+                 
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 25 strings out of 468176
+ 544 string characters out of 5407950
+ 426408 words of memory out of 5000000
+ 28843 multiletter control sequences out of 15000+600000
+ 627737 words of font info for 42 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 19i,2n,31p,136b,102s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.

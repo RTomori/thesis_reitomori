@@ -1,0 +1,40 @@
+indexvar index, i, j, n,m ::= {{ isa nat }} {{ coq nat }} {{ com indices }}
+metavar tvar, x ::= {{ coq nat }} {{ coq-equality }} {{ repr-locally-nameless }} {{ tex \mathit{[[tvar]]} }} {{com term variable }}
+metavar Tvar, alpha {{ tex \alpha }} ::= {{ coq nat }} {{ com type variable }}
+metavar label, l, k ::= {{ isa string }} {{ coq nat }} {{ tex \mathit{[[label]]} }} {{ com field label }}
+
+grammar
+    typeconst :: TC_ ::=
+        | unit :: :: unit
+        | bool :: :: bool
+        | int :: :: int
+    
+    ptype, p, q :: 'p_' ::= {{ com positive types }}
+        | typeconst :: :: tconst {{ com type constants }}
+        | alpha :: :: tvar {{ com type variable }}
+        | p1 \/ p2 :: :: tunion {{ com unions }}
+        | { l1 : p1, .. , ln : pn } :: :: trcd {{ com records }}
+        | bot :: :: tbot {{ com bottom }}
+        | n -> p :: :: tarr {{ com function types}}
+        | mu alpha . p :: :: trec {{ com recursive types }}
+    ntype, m, n :: 'n_' ::= {{ com negative types }}
+        | typeconst :: :: tconst {{ com type constants }}
+        | alpha :: :: tvar {{ com type variable }}
+        | p1 /\ p2 :: :: tinter {{ com intersections }} 
+        | { l1 : n1, .. , ln : pn } :: :: trcd {{ com records }}
+        | top :: :: ttop {{ com top }}
+        | p -> n :: :: tarr {{ com function types }}
+        | mu alpha . n :: :: trec {{ com recursive types }}
+    
+    term, t :: 'term_' ::= {{ com term }}
+     | x :: :: var {{ com variable }}
+     | \ x . t :: :: abs (+ bind x in t +) {{ com abstraction }}
+     | t1 t2 :: :: app {{ com application }}
+     | ( t1 , t2 ) :: :: tuple {{ com tuple }}
+     | { t1 , .. , tn } :: :: record {{ com record }}
+     | [ t1 , .. , tn ] :: :: variant {{ com variant }}
+     | if t1 then t2 else t3 :: :: cond {{ com conditional }}
+     | let p = t1 in t2 :: :: let (+ bind b(p) in t2 +) {{ com let-binding }}
+     | fix x . t :: :: fixpoint (+ bind x in t +) {{ com fixpoint }}
+     | ( t ) :: S :: paren {{ ich [[t]] }}
+     | [ x |-> t ] t' :: M :: tsub {{ ich ( tsubst_t [[t]] [[x]] [[t']]) }}

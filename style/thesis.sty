@@ -1,0 +1,27 @@
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{textcomp}
+\usepackage{bussproofs}
+\usepackage{listings}
+\usepackage{xcolor}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{theorem}{Theorem}[section]
+
+\lstset{
+    basicstyle = {\ttfamily\small},
+    breaklines = true,
+    frame = lines,
+    keepspaces = true,
+    keywordstyle=[1]{\bf},
+    morekeywords = [1]{let, in, if, then, else, rec, fun},
+    numbers = left, 
+    tabsize = 2,
+}
