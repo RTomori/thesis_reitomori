@@ -1,8 +1,35 @@
 \section{準備}
-本節では，本研究で扱う言語の構文および宣言的な型付け規則を定義する．
+本節では，本研究で扱う言語の構文および宣言的な型付け規則を定義する．型付け規則の表記は\cite{DBLP:conf/popl/DolanM17}に倣う．
 \subsection{構文}
-項および型の構文は次のように定義する．項構文は PCF をレコード及びヴァリアントにより拡張した体系である PCF+\cite{gunter92}に基づく．
+型$\tau$はその\textbf{極性}により，正負が割り当てられる．正の型および負の型の構文を次のように帰納的に定める．
+\begin{definition} [型の構文]
+正の型$P$， 負の型$N$の構文を，以下のように帰納的に定義する．
+\nonterms{P}
+\nonterms{N}
+\end{definition}
+項および型の構文は次のように定義する．項構文は PCF をレコード及びヴァリアントにより拡張した体系である PCF+\cite{gunter92}にパターンマッチやADTを加えたものである．
 \label{subsec:syntax}
 \begin{definition}[項の構文]
-項$t$および型$\tau$を，以下のように帰納的に定義する．
+項$t$およびパターン$p$を，以下のように帰納的に定義する．
+\nonterms{t}
+\nonterms{p}
 \end{definition}
+
+次に，宣言的な型付け規則を定める．まず，単相的文脈$\Gamma$およびtypingを次のように定めよう．
+\begin{definition}[単相的文脈]
+単相的文脈$\Gamma$とは，変数から型への有限写像である:
+\nonterms{D}
+\end{definition}
+\begin{definition}[Typing]
+Typing $\mathcal{T}$とは，単相的文脈と型の組である:
+\nonterms{Tau}
+\end{definition}
+\begin{definition}[多相的文脈]
+多相的文脈$\Pi$はlet-boundな変数からtypingへの有限写像である:
+\nonterms{ctx}
+\end{definition}
+このもとで，項の型付けを以下のように定める．
+\begin{figure}[H]
+\drules[T] {$\Pi \Vdash t : \tau$} {} {Var-Mono, Var-Poly, Abs, App, Let, Cons, Proj, Variant, Sub, Rec-Mono}
+\caption{項の型付け規則(一部抜粋)}
+\end{figure}

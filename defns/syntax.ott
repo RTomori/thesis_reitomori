@@ -1,40 +1,192 @@
-indexvar index, i, j, n,m ::= {{ isa nat }} {{ coq nat }} {{ com indices }}
-metavar tvar, x ::= {{ coq nat }} {{ coq-equality }} {{ repr-locally-nameless }} {{ tex \mathit{[[tvar]]} }} {{com term variable }}
-metavar Tvar, alpha {{ tex \alpha }} ::= {{ coq nat }} {{ com type variable }}
-metavar label, l, k ::= {{ isa string }} {{ coq nat }} {{ tex \mathit{[[label]]} }} {{ com field label }}
-
+metavar termvar, x, f ::= {{ repr-locally-nameless }} {{ coq nat }} {{ com Term variables }}
+metavar typevar, alpha {{ tex \alpha }} ::= {{ coq nat }} {{ com Type variables }}
+metavar integer_literal ::= {{ coq nat }} {{ lex numeral }}
+indexvar index, i, j, n, m ::= {{ coq nat }} {{ com indices }}
+metavar label, l, k ::= {{ coq nat }} {{ com field label }}
 grammar
-    typeconst :: TC_ ::=
-        | unit :: :: unit
-        | bool :: :: bool
-        | int :: :: int
-    
-    ptype, p, q :: 'p_' ::= {{ com positive types }}
-        | typeconst :: :: tconst {{ com type constants }}
-        | alpha :: :: tvar {{ com type variable }}
-        | p1 \/ p2 :: :: tunion {{ com unions }}
-        | { l1 : p1, .. , ln : pn } :: :: trcd {{ com records }}
-        | bot :: :: tbot {{ com bottom }}
-        | n -> p :: :: tarr {{ com function types}}
-        | mu alpha . p :: :: trec {{ com recursive types }}
-    ntype, m, n :: 'n_' ::= {{ com negative types }}
-        | typeconst :: :: tconst {{ com type constants }}
-        | alpha :: :: tvar {{ com type variable }}
-        | p1 /\ p2 :: :: tinter {{ com intersections }} 
-        | { l1 : n1, .. , ln : pn } :: :: trcd {{ com records }}
-        | top :: :: ttop {{ com top }}
-        | p -> n :: :: tarr {{ com function types }}
-        | mu alpha . n :: :: trec {{ com recursive types }}
-    
-    term, t :: 'term_' ::= {{ com term }}
-     | x :: :: var {{ com variable }}
-     | \ x . t :: :: abs (+ bind x in t +) {{ com abstraction }}
-     | t1 t2 :: :: app {{ com application }}
-     | ( t1 , t2 ) :: :: tuple {{ com tuple }}
-     | { t1 , .. , tn } :: :: record {{ com record }}
-     | [ t1 , .. , tn ] :: :: variant {{ com variant }}
-     | if t1 then t2 else t3 :: :: cond {{ com conditional }}
-     | let p = t1 in t2 :: :: let (+ bind b(p) in t2 +) {{ com let-binding }}
-     | fix x . t :: :: fixpoint (+ bind x in t +) {{ com fixpoint }}
-     | ( t ) :: S :: paren {{ ich [[t]] }}
-     | [ x |-> t ] t' :: M :: tsub {{ ich ( tsubst_t [[t]] [[x]] [[t']]) }}
+
+tau {{ tex \tau}} :: 'tau_' ::= {{ com type }}
+    | P :: :: pos
+    | N :: :: neg
+    | tau1 -> tau2 :: :: arr {{ com function type }}
+    | { l1 : tau1 , .. , ln : taun } :: :: rcd {{ com record type }}
+    | [ l1 : tau1 , .. , ln : taun ] :: :: variant {{ com variant type }}
+    | unit :: :: unit {{ com unit type }}
+
+P :: 'P_' ::=  {{ com positive type }}
+    | alpha :: :: var {{ com type variable }}
+    | int :: :: int
+    | bool :: :: bool
+    | unit :: :: unit {{ com unit }}
+    | P1 \/ P2 :: :: union {{ tex [[P1]] \sqcup [[P2]] }} {{ com unions }}
+    | bot :: :: bot {{ tex \bot }} {{ com bot type }}
+    | P1 * P2 :: :: pair {{ tex [[P1]] \otimes [[P2]] }} {{ com product type }}
+    | { l1 : P1 , .. , ln : Pn } :: :: rcd {{ com record }}
+    | [ k1 : P1 , .. , kn : Pn ] :: :: variant {{ com variant }}
+    | N -> P :: :: arr {{ tex [[N]] \to [[P]] }} {{ com arrow type }}
+    | mu alpha . P :: :: fix {{ tex \mu [[alpha]] . [[P]] }} {{ com recursive type }}
+    | down N :: :: shift_down {{com downshift }} {{ tex \downarrow [[N]] }}
+    | ( P ) :: S :: paren {{ icho [[P]] }}
+    | [ P / alpha +] P' :: M :: subst_pos {{ icho (bisubst_pos_t [[P]] [[alpha]]  [[P']] )}}
+    | [ N / alpha -] P' :: M :: subst_neg {{ icho (bisubst_neg_t [[N]] [[alpha]] [[P']])}}
+N :: 'N_' ::= {{ com negative type }}
+    | alpha :: :: var {{ com type variable }}
+    | int :: :: int
+    | bool :: :: bool
+    | unit :: :: unit {{ com unit }}
+    | N1 /\ N2 :: :: inter {{ tex [[N1]] \sqcap [[N2]] }} {{ com intersections }}
+    | N1 * N2 :: :: pair {{ tex [[N1]] \otimes [[N2]] }} {{ com product type }}
+    | top :: :: top {{ tex \top }} {{ com top type }}
+    | { l1 : N1 , .. , ln : Nn } :: :: rcd {{ com record }}
+    | [ k1 : N1 , .. , kn : Nn ] :: :: variant {{ com variant }}
+    | P -> N :: :: arr {{ tex [[P]] \to [[N]] }} {{ com arrow type }}
+    | mu alpha . N :: :: fix {{ tex \mu [[alpha]] . [[N]] }} {{ com recursive type }}
+    | up P :: :: shift_up {{ com upshift}} {{ tex \uparrow [[P]] }}
+    | ( N ) :: S :: paren {{ icho [[N]] }}
+    | [ P / alpha +] N' :: M :: subst_pos {{ icho (bisubst_pos_t [[P]] [[alpha]]  [[N']] )}}
+    | [ N / alpha -] N' :: M :: subst_neg {{ icho (bisubst_neg_t [[N]] [[alpha]] [[N']])}}
+
+t :: 't_' ::=
+    | integer_literal :: :: int {{ com integer }}
+    | false :: :: false
+    | true :: :: true
+    | () :: :: unit
+    | iszero t :: :: iszero {{ com }}
+    | succ t :: :: succ {{ com successor }}
+    | pred t :: :: pred {{ com predecessor }}
+    | not t :: :: not {{ com negation }}
+    | x :: :: var {{ com variable }}
+    | ( t1 , t2 ) :: :: prod {{ com product }}
+    | { l1 = t1 , .. , ln = tn } :: :: rcd {{ com record }}
+    | l t :: :: variant {{ com injection }}
+    | fst t :: :: fst {{ com projection of first element }}
+    | snd t :: :: snd {{ com projection of second element }}
+    | t . l :: :: proj {{ com projection }}
+    | t t' :: :: apply {{ com application }}
+    | \ p . t :: :: function (+ bind b(p) in t+) {{ com abstraction }}
+    | fix p . t :: :: recursive_defn (+  bind b(p) in t +) {{ com recursive definition }}
+    | let p = t in t' :: :: let (+ bind b(p) in t'+) {{ com let binding }}
+    | let rec p = t in t' :: :: recursive_let (+ bind b(p) in t' +) {{ com recursive local definition }}
+    | if t1 then t2 else t3 :: :: ifc {{ com conditional }}
+    | case t of p1 -> t1 .. pn -> tn :: :: case {{ com pattern matching }}
+    | ( t ) :: S :: paren {{ ich [[t]] }}
+    | { t / x } t' :: M :: termsub {{ icho (tsubst_t [[t]] [[x]] [[t']])}}
+
+p :: 'p_' ::= {{ com pattern }}
+    | x :: :: var (+ b = x +) {{ com variable pattern }}
+    | _  :: :: wild (+ b = {} +) {{ com wildcard pattern }}
+    | l p :: :: inj (+ b  = b(p) +) {{ com variant pattern }}
+    | ( p1 , p2 ) :: :: prod (+ b = b(p1) union b(p2) +) {{ com pair pattern }}
+    | { l1 = p1 , .. , ln = pn } :: :: rcd (+ b = b(p1 .. pn) +) {{ com record pattern }}
+   | p1 '|' p2 :: :: disj (+ b = b(p1) +) {{ com or-pattern }}
+    | p1 '&' p2 :: :: conj (+ b = b(p1) union b(p2) +) {{ com and-pattern }}
+    | ( pi ) :: S :: paren {{ ich [[pi]] }}
+
+D {{ tex \Delta }} :: 'D_' ::= {{ com monomorphic environment }}
+    | emp_mono :: :: empty {{ tex \varnothing }}
+    | x : tau :: :: singleton {{ tex  [[x]] : [[tau]] }}
+    | D , x : tau :: :: cons_mono 
+
+Tau  {{ tex \mathcal{T} }} :: 'Tau_' ::= {{ com typing }}
+    | [ D ] tau :: :: typing {{ tex [ [[D]] ] [[tau]] }}
+
+ctx {{ tex \Pi }} :: 'ctx_' ::= {{ com polymorphic environment }}
+    | emp_poly :: :: empty {{ tex \varnothing }}
+    | ctx , x : Tau :: :: cons_poly
+
+formula :: 'formula_' ::=
+    | judgement :: ::  judgement
+    | x : Tau in ctx :: :: xine {{ coq binds [[x]] (bind_typ [[Tau]]) [[ctx]] }} {{ tex [[ctx]]([[x]]) = [[Tau]] }}
+    | formula1 , .. , formulan :: :: dots
+    | Tau1 <: Tau2 :: :: sub {{ tex [[Tau1]] \leq^{\forall} [[Tau2]] }}
+
+terminals :: terminals_ ::=
+    | \ :: :: lambda {{ tex \lambda }}
+    | -> :: :: arrow {{ tex \rightarrow }}
+    | ||- :: :: turnstile {{ tex \Vdash }}
+    | /\ :: :: sqcap {{ tex \sqcap }}
+    | \/ :: :: sqcup {{ tex \sqcup }}
+    | = :: :: eq {{ tex \!\! = \!\! }}
+    | <: :: :: subtype {{ tex \leq }}
+
+substitutions
+    single t x :: tsubst
+    single P alpha :: bisubst_pos
+    single N alpha :: bisubst_neg
+
+freevars
+    t x :: fv_term
+    Tau alpha :: fv_type
+
+defns 
+    Jtype :: '' ::=
+
+defn
+    ctx ||- t : Tau :: :: T :: T_ {{ com term typing }} by
+
+    ---------------------------------------------- :: Int
+    ctx ||- integer_literal : [ emp_mono ] int
+
+    ---------------------------------------- :: True
+    ctx ||- true : [ emp_mono ] bool
+
+    ------------------------------------- :: False
+    ctx ||- false : [ emp_mono ] bool
+
+    ----------------------------------- :: Unit
+    ctx ||-  () : [ emp_mono ] unit
+
+    ---------------------------------- :: Var_Mono
+    ctx ||- x : [ x : alpha ] alpha 
+
+    x : Tau in ctx
+    --------------- :: Var_Poly
+    ctx ||- x : Tau
+
+     ctx ||- t : [ D , x : tau1 ] tau2
+    --------------------------- :: Abs
+    ctx ||- \x.t : [ D ] tau1 -> tau2
+
+    ctx ||- t1 : [ D ] tau1 -> tau2
+    ctx ||- t2 : [ D ] tau1
+    --------------------------- :: App
+    ctx ||- t1 t2 : [ D ] tau2
+
+    ctx ||- t1 : [ D1 ] tau1
+    ctx , x : [ D1 ] tau1 ||- t2 : [ D2 ] tau2
+    ----------------------------------- :: Let
+    ctx ||- let x = t1 in t2 : [ D2 ] tau2 
+
+    ctx ||- t1 : [ D ] bool   
+    ctx ||- t2 : [ D ] tau   
+    ctx ||- t3 : [ D ] tau
+    ----------------------:: If
+    ctx ||- if t1 then t2 else t3 : [ D ] tau
+
+
+    ctx ||- t1 : [ D ] tau1 , .. , ctx ||- tn : [ D ] taun 
+    ------------------------------------------------- :: Cons
+    ctx ||- { l1 = t1 , .. , ln = tn } : [ D ] { l1 : tau1 , .. , ln : taun }
+
+    ctx ||- t : [ D ] { l : tau }
+    ------------------------ :: Proj
+    ctx ||- t.l : [D] tau
+
+    ctx ||- t : [ D ] tau
+    --------------------------- :: Variant
+    ctx ||- l t : [ D ] [ l : tau ]
+
+    ctx ||- t : [ D ] tau
+    [ D ] tau <: [ D' ] tau'
+    ----------------------- :: Sub
+    ctx ||- t : [ D' ] tau'
+
+    ctx ||-  t :  [ D , f : tau ] tau
+    -------------------------------- :: Rec_Mono
+    ctx ||- fix f . t : [ D ] tau
+
+defn
+ |- tau1 <: tau2 :: :: tsub :: tsub_ {{ com [[tau1]] is the subtype of [[tau2]] }} by
+
+
+

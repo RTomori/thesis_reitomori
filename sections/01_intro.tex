@@ -1,4 +1,24 @@
 \section{はじめに}
+本研究では，部分型多相と多相再帰的な定義の型推論機能の相互作用を，その型付け能力から明らかにすることを目的とする．
 \subsection{背景}
+\subsubsection{主要型付け特性}
+
 \subsubsection{部分型多相のもとでの型推論}
+
+\begin{remark}[同型再帰の必要性\cite{dolan2017}]
+項$f$を，\begin{lstlisting}
+    let rec f = fun g -> f (g false)
+\end{lstlisting}
+のように定める．最小型$\bot$が存在するもとでは，$f$は型$(\tt{bool} \to \bot) \to \bot, (\tt{bool} \to \tt{bool} \to \bot) \to \bot, \ldots$により型付け可能だが，主要型は同値再帰型を許した場合にのみ得られる$(\mu \alpha . \tt{bool} \to \alpha) \to \bot$に限られ，有限な主要型は存在しない．
+
+実際，ある$n \in \mathbb{N}$が存在し，$f$の主要型が$\tau_p = \underbrace{(\tt{bool} \to \tt{bool} \to \ldots \to \bot)}_{\text{depth}\ n + 1} \to \bot$で与えられるとする．このとき，任意の型$\tau$に対して$\Vdash f : \tau \Rightarrow \tau_p \leq^{\forall} \tau$が必要．
+とくに$f$は$\tau = \underbrace{(\tt{bool}\to\ldots\to \tt{bool}  \to \bot)}_{\text{depth}\ n+2} \to \bot$で型付け可能である．$\tau_p$の主要性および部分型関係に関する逆転補題から，最終的に$\tt{bool} \to \bot \leq^\forall \bot$が必要となり，$\bot$の最小性に矛盾する．
+\end{remark}
+双対的に，最大型$\top$が存在するもとでも同様の主張が成り立つ．有限の主要型を持たない項として，\begin{lstlisting}
+let rec f = fun x k -> if k(f x) then true else false
+\end{lstlisting}などが挙げられる．この項の主要型は$\top \to (\mu \alpha. (\alpha \to \tt{bool}) \to \tt{bool})$である．
 \subsubsection{多相再帰の型推論}
+\subsubsection{型付け能力の特徴付け}
+
+\subsection{貢献}
+\subsection{関連研究}

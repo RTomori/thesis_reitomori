@@ -6,6 +6,10 @@
 \usepackage{bussproofs}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{here}
+\usepackage{style/listproc/listproc}
+\usepackage{style/mathpartir}
+\usepackage{style/ottalt/ottalt}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -16,12 +20,22 @@
 \newtheorem{theorem}{Theorem}[section]
 
 \lstset{
-    basicstyle = {\ttfamily\small},
-    breaklines = true,
-    frame = lines,
-    keepspaces = true,
-    keywordstyle=[1]{\bf},
-    morekeywords = [1]{let, in, if, then, else, rec, fun},
-    numbers = left, 
-    tabsize = 2,
+    language={[Objective]Caml},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    breaklines=true,
+    frame=none
 }
+%\lstset{
+%    basicstyle = {\ttfamily\small},
+%    breaklines = true,
+%    frame = none,
+%    keepspaces = true,
+%    keywordstyle=[1]{\bf},
+%    morekeywords = [1]{let, in, if, then, else, rec, fun},
+%    numbers = left, 
+%    tabsize = 2,
+%}

@@ -1,0 +1,85 @@
+%%
+%% This is file `ottalt.ott',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ottalt.dtx  (with options: `ott')
+%% 
+%% Copyright (C) 2011 by Jesse A. Tov
+%% 
+%% This file may be distributed and/or modified under the conditions of the
+%% LaTeX Project Public License, either version 1.2 of this license or (at
+%% your option) any later version. The latest version of this license is
+%% in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+grammar
+t {{ tex \nonterm t }} :: tp_ ::= {{ com types }}
+  | a            ::   :: var  {{ com type variable }}
+  | t1 -> t2     ::   :: arr  {{ com function }}
+  | all a . t    ::   :: all  {{ com univeral }}
+  | { t' / a } t :: M :: subst
+  | ( t )        :: S :: parens
+
+e {{ tex \nonterm e }} :: tm_ ::= {{ com terms }}
+  | x            ::   :: var  {{ com variable }}
+  | \ x : t . e  ::   :: abs  {{ com abstraction }}
+  | e1 e2        ::   :: app  {{ com application }}
+  | /\ a . e     ::   :: tabs {{ com type abstraction }}
+  | e [ t ]      ::   :: tapp {{ com type application }}
+  | { t / a } e  :: M :: tsubst
+  | ( e )        :: S :: parens
+
+G {{ tex \nonterm G }} :: env_ ::= {{ com typing contexts }}
+  | empty        ::   :: nil  {{ com empty }}
+  | G , x : t    ::   :: var  {{ com variable assumption }}
+  | G, a         ::   :: tvar {{ com type variable assumption }}
+defns Jtype :: '' ::=
+defn G |- e : t :: :: typing :: T_ {{ com term typing }} by
+
+x : t in G
+---------- :: Var
+G |- x : t
+
+G, x:t1 |- e : t2
+----------------------- :: Abs
+G |- \x:t1.e : t1 -> t2
+
+G |- e1 : t' -> t
+G |- e2 : t'
+----------------- :: App
+G |- e1 e2 : t
+
+G, a |- e : t
+-------------------- :: TAbs
+G |- /\a.e : all a.t
+
+G |- e : all a.t'
+G |- t ok
+------------------- :: TApp
+G |- e[t] : {t/a}t'
+grammar
+metavar x {{ tex \nonterm x }} ::= {{ com variables }}
+metavar a {{ tex \nonterm a }} ::= {{ com type variables }}
+
+grammar
+formula :: formula_ ::= {{ com formulas from meta-language }}
+  | judgement    :: :: judgement
+  | formula \\\\ :: :: lbh {{ tex [[formula]] \ottlinebreakhack }}
+  | x : t in G   :: :: xinenv
+  | a in G       :: :: ainenv
+  | G |- t ok    :: :: tokay
+
+terminals :: terminals_ ::=
+  | ->           :: :: arr       {{ tex \to }}
+  | all          :: :: all       {{ tex \forall }}
+  | \            :: :: lam       {{ tex \lambda }}
+  | /\           :: :: Lam       {{ tex \Lambda }}
+  | in           :: :: in        {{ tex \in }}
+  | |-           :: :: proves    {{ tex \vdash }}
+  | empty        :: :: empty     {{ tex \bullet }}
